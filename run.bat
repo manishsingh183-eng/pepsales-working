@@ -1,0 +1,6 @@
+@echo off
+echo Compiling Java files...
+javac -cp "lib/*" -d out src/models/*.java src/utils/*.java src/services/*.java src/controllers/*.java
+echo Running API server...
+java -cp "lib/*;out" controllers.NotificationApi
+pause
