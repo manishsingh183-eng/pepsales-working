@@ -1,10 +1,10 @@
-# 📬 Notification Service - Java + Spark API
+# Notification Service - Java + Spark API
 
 A simple Java-based backend to send notifications via Email, SMS, and In-App messages using RESTful API.
 
 ---
 
-## ✅ Requirements
+## Requirements
 
 - Java 8 or above installed
 - These `.jar` dependencies placed in the `lib/` folder:
@@ -20,7 +20,7 @@ A simple Java-based backend to send notifications via Email, SMS, and In-App mes
 
 ---
 
-## 📦 Setup Instructions
+## Setup Instructions
 
 1. **Extract the Project**  
    Unzip `pepsales-working.zip` into a folder like `C:\Users\YourName\Desktop\pepsales-working`.
@@ -47,9 +47,9 @@ A simple Java-based backend to send notifications via Email, SMS, and In-App mes
 
 ---
 
-## 🌐 API Endpoints
+## API Endpoints
 
-### 🔹 POST `/notifications`
+### POST `/notifications`
 Send a notification.
 
 **Request Body Example (JSON):**
@@ -61,12 +61,12 @@ Send a notification.
 }
 ```
 
-### 🔹 GET `/users/{id}/notifications`
+### GET `/users/{id}/notifications`
 Retrieve notifications sent to a user.
 
 ---
 
-## 🧠 Assumptions Made
+## Assumptions Made
 
 - In-memory map used to store user notifications (no DB/file).
 - Retry logic (3 attempts) added for failed sends.
@@ -75,7 +75,7 @@ Retrieve notifications sent to a user.
 
 ---
 
-## 🚀 Optional: Use run.bat
+## Optional: Use run.bat
 
 Double-click `run.bat` (on Windows) for auto-compile and run.
 
