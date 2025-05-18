@@ -2,14 +2,17 @@ package services;
 
 import models.Notification;
 import utils.EmailSender;
-import utils.SMSSender;
 import utils.InAppSender;
+import utils.SMSSender;
 
 public class NotificationService {
 
     public void sendNotification(Notification notification) {
-        int retries = 3;
-        while (retries-- > 0) {
+        int maxRetries = 3;
+        int attempt = 0;
+        boolean success = false;
+
+        while (attempt < maxRetries && !success) {
             try {
                 switch (notification.getType().toLowerCase()) {
                     case "email":
@@ -22,13 +25,22 @@ public class NotificationService {
                         InAppSender.send(notification);
                         break;
                     default:
-                        System.out.println("Unknown notification type: " + notification.getType());
+                        throw new IllegalArgumentException("Unsupported type: " + notification.getType());
                 }
-                break;
+
+                success = true;
+
             } catch (Exception e) {
-                System.out.println("Failed to send. Retries left: " + retries);
-                if (retries == 0) {
-                    System.out.println("Giving up on notification to " + notification.getUserId());
+                attempt++;
+                System.out.println("Attempt " + attempt + " failed: " + e.getMessage());
+
+                if (attempt < maxRetries) {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException ignored) {
+                    }
+                } else {
+                    System.out.println("All retries failed for notification: " + notification.getMessage());
                 }
             }
         }
